@@ -6,5 +6,6 @@ defmodule EmergencyDispatch.Event do
             time_limit: 10,
             time_elapsed: 0,
             crew_number_assigned: 0,
+            total_work_units: 10,
             work_units_remaining: 10
 end

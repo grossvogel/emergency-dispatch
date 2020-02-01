@@ -1,29 +1,50 @@
-<ul>
-  <li>Time Elapsed <%= @game.time_elapsed %></li>
-  <li>Work Crews Available: <%= @game.work_crews %></li>
-  <li>Current Score: <%= @game.score %></li>
-</ul>
+<div class="header">
+  <ul>
+    <li>Time Elapsed <%= @game.time_elapsed %></li>
+    <li>Work Crews Available: <%= @game.work_crews %></li>
+    <li>Current Score: <%= @game.score %></li>
+  </ul>
+</div>
 
-
-<%= for location <- @game.locations do %>
-  <hr>
-  <div phx-click="crew" phx-value-loc_id="<%= location.id %>">
-    <%= location.name %>
-    <%= if location.current_event do %>
-      <p><%= location.current_event.time_limit - location.current_event.time_elapsed %></p>
-      <p><%= location.current_event.crew_number_assigned %> crew(s) on scene</p>
-      <p><%= location.current_event.work_units_remaining %> work units remaining</p>
+<div class="main">
+  <div class="city-grid">
+    <%= for location <- @game.locations do %>
+      <div class="block" phx-click="crew" phx-value-loc_id="<%= location.id %>">
+        <%= location.name %>
+        <%= if location.current_event do %>
+          <div class="alarms icon-bar">
+            <div class="progress-bar">
+              <div class="inner" style="width:<%= timeout_progress(location) %>%">&nbsp;</div>
+            </div>
+            <%= for num <- 1..location.current_event.severity do %>
+              <img src="/images/alarm-bell.svg" alt="alarmb bell <%= num %>" />
+            <% end %>
+          </div>
+          <%= if location.current_event.crew_number_assigned > 0 do %>
+            <div class="crews icon-bar">
+              <div class="progress-bar">
+                <div class="inner" style="width:<%= work_progress(location) %>%">&nbsp;</div>
+              </div>
+              <%= for num <- 1..location.current_event.crew_number_assigned do %>
+                <img src="/images/truck-<%= num %>.svg" alt="work crew <%= num %>" />
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     <% end %>
   </div>
-<% end %>
-
-<ul>
-  <%= for message <- @game.flash_messages do %>
-    <li>
-      <%= message %>
-    </li>
-  <% end %>
-<ul>
+  <div class="messages">
+    <ul>
+      <%= for message <- @game.flash_messages do %>
+        <li class="<%= to_class(message.type) %>">
+          <h4><%= message.type %></h4>
+          <%= message.text %>
+        </li>
+      <% end %>
+    <ul>
+  </div>
+</div>
 
 <%= if @game.score >= @game.win_condition do %>
   <div>YOU WIN</div>

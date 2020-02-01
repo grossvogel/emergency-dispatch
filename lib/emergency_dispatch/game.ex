@@ -13,7 +13,7 @@ defmodule EmergencyDispatch.Game do
   def generate_new() do
     # do random things to generate a base game
     %EmergencyDispatch.Game{
-      locations: Locations.random_locations(4)
+      locations: Locations.random_locations(16)
     }
   end
 end

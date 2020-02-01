@@ -1,5 +1,5 @@
 defmodule EmergencyDispatch.EventProcessor do
-  alias EmergencyDispatch.{Event, Game, Location}
+  alias EmergencyDispatch.{Event, Game, Location, Message}
 
   @score_multiplier 2
 
@@ -36,15 +36,13 @@ defmodule EmergencyDispatch.EventProcessor do
   # success
   defp check_conditions(%Event{work_units_remaining: remaining} = event, game, location)
        when remaining <= 0 do
+    message = %Message{type: "Breaking News", text: location.success_text}
+
     updated_game =
       game
       |> Map.put(:score, game.score + event.severity * @score_multiplier)
       |> Map.put(:work_crews, game.work_crews + event.crew_number_assigned)
-      |> Map.put(:flash_messages, [location.success_text | game.flash_messages])
-
-    IO.inspect("success")
-    IO.inspect(game, label: "game")
-    IO.inspect(updated_game, label: "updated_game")
+      |> Map.put(:flash_messages, [message | game.flash_messages])
 
     {nil, updated_game}
   end
@@ -52,11 +50,13 @@ defmodule EmergencyDispatch.EventProcessor do
   # failure
   defp check_conditions(%Event{time_elapsed: elapsed, time_limit: limit} = event, game, location)
        when elapsed > limit do
+    message = %Message{type: "Disaster Strikes", text: location.failure_text}
+
     updated_game =
       game
       |> Map.put(:score, game.score - event.severity * @score_multiplier)
       |> Map.put(:work_crews, game.work_crews + event.crew_number_assigned)
-      |> Map.put(:flash_messages, [location.failure_text | game.flash_messages])
+      |> Map.put(:flash_messages, [message | game.flash_messages])
 
     {nil, updated_game}
   end

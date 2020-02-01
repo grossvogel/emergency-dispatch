@@ -1,5 +1,110 @@
 /* This file is for your main application css. */
 
-@import "./phoenix.css";
-
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
+
+body {
+  padding: 0 200px;
+  background-color: #e1c699;
+}
+.main {
+  display: flex;
+  flex-direction: row;
+}
+.city-grid {
+  width: calc(98px * 4 * 1.5);
+  height: calc(104px * 4 * 1.5);
+  display: flex;
+  flex-flow: row wrap;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+.messages {
+  flex-shrink: 0;
+  flex-grow: 0;
+  max-height: calc(104px * 4 * 1.5);
+  overflow: auto;
+  width: 400px;
+  background: #ddd;
+  margin-left: 20px;
+}
+.messages h4 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+}
+.disaster-strikes {
+  background-color: #fcc;
+}
+.disaster-strikes h4{
+  color:#a00;
+}
+.breaking-news {
+  background-color: #cfc;
+}
+.breaking-news h4{
+  color:#080;
+}
+.messages ul {
+  margin: 0;
+  padding: 0;
+}
+.messages li {
+  padding: 14px 20px;
+  list-style: none;
+  border-bottom: 1px solid #bbb;
+}
+
+.block {
+  position: relative;
+  flex-basis: 1;
+  width: calc(98px * 1.5);
+  height: calc(104px * 1.5);
+  background-image: url(/images/block-bg.png);
+  background-size: cover;
+}
+.icon-bar {
+  background: #eee;
+  position: absolute;
+  border-radius: 3px;
+  width: 105px;
+  height: 36px;
+}
+
+.block .alarms {
+  top: 8px;
+  left: 8px;
+}
+.block .crews {
+  bottom: 8px;
+  right: 8px;
+}
+
+.icon-bar img {
+  position: inline-block;
+  max-width: 24px;
+  max-height: 28px;
+  padding: 3px 4px;
+}
+
+.progress-bar{
+  position:relative;
+  height: 6px;
+  width: 100%;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom: 1px solid #ddd;
+}
+.progress-bar .inner{
+  position:absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.crews .progress-bar .inner{
+  background-color: #080;
+}
+.alarms .progress-bar .inner{
+  background-color: #a00;
+}
