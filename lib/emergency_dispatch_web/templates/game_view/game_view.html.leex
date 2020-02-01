@@ -1,7 +1,8 @@
-<p>
-  Time Elapsed <%= @game.time_elapsed %>
-  Work Crews Available: <%= @game.work_crews %>
-</p>
+<ul>
+  <li>Time Elapsed <%= @game.time_elapsed %></li>
+  <li>Work Crews Available: <%= @game.work_crews %></li>
+  <li>Current Score: <%= @game.score %></li>
+</ul>
 
 
 <%= for location <- @game.locations do %>
@@ -9,9 +10,25 @@
   <div phx-click="crew" phx-value-loc_id="<%= location.id %>">
     <%= location.name %>
     <%= if location.current_event do %>
-      <p><%= location.current_event.time_limit - location.current_event.time_elapsed %></p> 
+      <p><%= location.current_event.time_limit - location.current_event.time_elapsed %></p>
       <p><%= location.current_event.crew_number_assigned %> crew(s) on scene</p>
       <p><%= location.current_event.work_units_remaining %> work units remaining</p>
     <% end %>
   </div>
+<% end %>
+
+<ul>
+  <%= for message <- @game.flash_messages do %>
+    <li>
+      <%= message %>
+    </li>
+  <% end %>
+<ul>
+
+<%= if @game.score >= @game.win_condition do %>
+  <div>YOU WIN</div>
+<% end %>
+
+<%= if @game.score <= @game.lose_condition do %>
+  <div>YOU LOSE</div>
 <% end %>

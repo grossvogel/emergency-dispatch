@@ -12,6 +12,7 @@ defmodule EmergencyDispatch.Events do
     update_params = %{crew_number_assigned: crew_num}
     updated_event = Map.merge(loc_selected.current_event, update_params)
     updated_location = Map.put(Enum.at(locations, loc_index), :current_event, updated_event)
+
     game
     |> Map.put(:locations, List.replace_at(locations, loc_index, updated_location))
     |> Map.put(:work_crews, work_crews - 1)

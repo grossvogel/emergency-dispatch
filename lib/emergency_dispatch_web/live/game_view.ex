@@ -16,16 +16,13 @@ defmodule EmergencyDispatchWeb.GameView do
   end
 
   def handle_event("crew", params, %{assigns: assigns} = socket) do
-    IO.inspect(assigns, label: "phx click - assigns: ")
-    IO.inspect(params, label: "phx click - params: ")
     game = Events.assign_crew_check(assigns.game, params["loc_id"])
 
     {:noreply, assign(socket, %{game: game})}
   end
 
   def handle_info(:tick, %{assigns: %{game: game}} = socket) do
-    Process.send_after(self(), :tick, @timer_interval)
-    # IO.inspect(game)
+    trigger_next_tick(game)
 
     updated_game =
       game
@@ -36,5 +33,12 @@ defmodule EmergencyDispatchWeb.GameView do
     {:noreply, assign(socket, game: updated_game)}
   end
 
+  defp trigger_next_tick(%Game{score: score, win_condition: win, lose_condition: lose})
+       when score >= win or score <= lose do
+    # don't trigger anymore ticks, game is over
+  end
 
+  defp trigger_next_tick(_game) do
+    Process.send_after(self(), :tick, @timer_interval)
+  end
 end
