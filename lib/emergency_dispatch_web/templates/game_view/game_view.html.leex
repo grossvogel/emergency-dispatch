@@ -1,0 +1,14 @@
+<p>
+  Time Elapsed <%= @game.time_elapsed %>
+</p>
+
+
+<%= for location <- @game.locations do %>
+  <hr>
+  <div>
+    <%= location.name %>
+    <%= if location.current_event do %>
+      <%= location.current_event.time_limit - location.current_event.time_elapsed %>
+    <% end %>
+  </div>
+<% end %>
