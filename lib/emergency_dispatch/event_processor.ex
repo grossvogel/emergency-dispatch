@@ -14,6 +14,19 @@ defmodule EmergencyDispatch.EventProcessor do
   end
 
   def process_location_event(%Location{current_event: event} = location) do
-    %{location | current_event: %{event | time_elapsed: event.time_elapsed + 1}}
+    updated_event =
+    event
+    |> increment_time_elapsed()
+    |> apply_work_units()
+    %{location | current_event: updated_event}
+  end
+
+
+  defp apply_work_units(%{work_units_remaining: unit_rem, crew_number_assigned: crew_num} = event) do
+    Map.put(event, :work_units_remaining, unit_rem - crew_num)
+  end
+
+  defp increment_time_elapsed(%{time_elapsed: time_elapsed} = event) do
+    Map.put(event, :time_elapsed, time_elapsed + 1)
   end
 end

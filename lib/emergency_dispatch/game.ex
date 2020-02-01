@@ -2,7 +2,7 @@ defmodule EmergencyDispatch.Game do
   alias EmergencyDispatch.{Locations}
 
   defstruct time_elapsed: 0,
-            work_crews: [],
+            work_crews: 3,
             active_events: [],
             score: 50,
             win_condition: 100,

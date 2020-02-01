@@ -1,14 +1,17 @@
 <p>
   Time Elapsed <%= @game.time_elapsed %>
+  Work Crews Available: <%= @game.work_crews %>
 </p>
 
 
 <%= for location <- @game.locations do %>
   <hr>
-  <div>
+  <div phx-click="crew" phx-value-loc_id="<%= location.id %>">
     <%= location.name %>
     <%= if location.current_event do %>
-      <%= location.current_event.time_limit - location.current_event.time_elapsed %>
+      <p><%= location.current_event.time_limit - location.current_event.time_elapsed %></p> 
+      <p><%= location.current_event.crew_number_assigned %> crew(s) on scene</p>
+      <p><%= location.current_event.work_units_remaining %> work units remaining</p>
     <% end %>
   </div>
 <% end %>
