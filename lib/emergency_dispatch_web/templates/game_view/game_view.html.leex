@@ -55,9 +55,15 @@
 </div>
 
 <%= if @game.score >= @game.win_condition do %>
-  <div>YOU WIN</div>
+  <div class="end-screen"></div>
+  <div class="end-win-text">
+    <h1>You are Victorious!</h1>
+  </div>
 <% end %>
 
 <%= if @game.score <= @game.lose_condition do %>
-  <div>YOU LOSE</div>
+  <div class="end-screen"></div>
+  <div class="end-lose-text">
+    <h1>You Lose!</h1>
+  </div>
 <% end %>
