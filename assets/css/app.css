@@ -2,9 +2,51 @@
 
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
 
+h3, h4 {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  margin: 15px 0;
+  justify-content: space-between;
+  width: 1012px;
+}
+
+.header h3 {
+  margin: 0;
+  line-height: 34px;
+}
+
+.header-crews div {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  padding: 3px 4px;
+  border-radius: 3px;
+  margin-right: 3px;
+}
+
+.header-crews img {
+  max-width: 24px;
+  max-height: 28px;
+}
+
+.available {
+  background-color: #eee;
+}
+
+.unavailable {
+  background-color: #999;
+  opacity: .8;
+}
+
 body {
-  padding: 0 200px;
+  padding: 0 100px;
   background-color: #e1c699;
+  font-family: 'Open Sans', sans-serif;
 }
 .main {
   display: flex;

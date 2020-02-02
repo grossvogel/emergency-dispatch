@@ -16,4 +16,12 @@ defmodule EmergencyDispatchWeb.GameViewView do
     time_remaining = event.time_limit - event.time_elapsed
     div(time_remaining * 100, event.time_limit)
   end
+
+  def active_crew_class(%{work_crews: crews}, num) when crews >= num do
+    "available"
+  end
+
+  def active_crew_class(_, _) do
+    "unavailable"
+  end
 end
