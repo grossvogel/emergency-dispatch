@@ -1,19 +1,21 @@
 defmodule EmergencyDispatch.Game do
-  alias EmergencyDispatch.{Locations}
+  alias EmergencyDispatch.{Level, Locations}
 
   defstruct time_elapsed: 0,
             work_crews: 3,
-            active_events: [],
             score: 50,
-            win_condition: 90,
-            lose_condition: 20,
             locations: [],
-            flash_messages: []
+            flash_messages: [],
+            level: %Level{}
 
   def generate_new() do
     # do random things to generate a base game
+    level = Level.first_level()
+
     %EmergencyDispatch.Game{
-      locations: Locations.random_locations(16)
+      locations: Locations.random_locations(16),
+      level: level,
+      work_crews: level.total_crews
     }
   end
 end

@@ -2,7 +2,7 @@
 
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
 
-h3, h4 {
+h1 h2, h3, h4 {
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
 }
@@ -47,6 +47,13 @@ body {
   padding: 0 100px;
   background-color: #e1c699;
   font-family: 'Open Sans', sans-serif;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .main {
@@ -180,27 +187,63 @@ body {
 }
 
 .end-screen {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  height: 600px;
-  width: 1110px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   background-color: #000;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
-.end-lose-text {
-  color: red;
-  font-size: 72px;
-  position: absolute;
-  top: 100px;
-  left: 250px;
+.end-screen-modal {
+  position: fixed;
+  top: 12vh;
+  bottom: 12vh;
+  padding: 30px;
+  background:#eee;
+  margin-left: calc(50% - 250px - 30px - 100px);
+  width: 500px;
+}
+.end-screen-modal h1,
+.end-screen-modal h2 {
+  text-align:center;
 }
 
-.end-win-text {
-  color: green;
-  font-size: 72px;
-  position: absolute;
-  top: 75px;
-  left: 250px;
+.lose h2 {
+  color: #a00;
+}
+
+.win h2 {
+  color: #080;
+}
+
+.button-container {
+  margin-top: 50px;
+  text-align: center;
+}
+button {
+  /* bootstrap .btn */
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+  /* btn-info */
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+
+  cursor: pointer;
 }

@@ -1,5 +1,12 @@
 defmodule EmergencyDispatchWeb.GameViewView do
   use EmergencyDispatchWeb, :view
+  import EmergencyDispatch.Level, only: [is_last_level?: 1]
+  alias EmergencyDispatch.Game
+
+  def term_text(%Game{level: %{level_number: 1}}), do: "First Term"
+  def term_text(%Game{level: %{level_number: 2}}), do: "Second Term"
+  def term_text(%Game{level: %{level_number: 3}}), do: "Third Term"
+  def term_text(%Game{level: %{level_number: 4}}), do: "Fourth Term"
 
   def to_class(string) do
     string

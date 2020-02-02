@@ -1,14 +1,12 @@
 defmodule EmergencyDispatch.EventGenerator do
-  alias EmergencyDispatch.{Game, Event, Location, Message}
-  @event_gen_period 5
-  @event_gen_likelihood 95
-  @work_unit_multiplier 10
-  @severities [1, 2, 3]
-  @time_limits [10, 20, 30]
+  alias EmergencyDispatch.{Game, Event, Message}
 
-  def generate(%Game{time_elapsed: time} = game)
-      when rem(time, @event_gen_period) == 0 do
-    if should_generate() do
+  # avg severity is 2, 12 events per minute = so we generate 7 * 24 = 168 work units per minute
+  # 3 workers can contribute 180 work units per minute
+
+  def generate(%Game{time_elapsed: time, level: %{event_gen_period: period}} = game)
+      when rem(time, period) == 0 do
+    if should_generate(game) do
       attach_random_event(game)
     else
       game
@@ -19,8 +17,8 @@ defmodule EmergencyDispatch.EventGenerator do
     game
   end
 
-  defp should_generate() do
-    :rand.uniform(100) <= @event_gen_likelihood
+  defp should_generate(%Game{level: %{event_gen_likelihood: likelihood}}) do
+    :rand.uniform(100) <= likelihood
   end
 
   defp attach_random_event(%Game{locations: locations} = game) do
@@ -30,9 +28,12 @@ defmodule EmergencyDispatch.EventGenerator do
       # found a random cell to add the event to
       [location_index] ->
         updated_location =
-          Map.put(Enum.at(locations, location_index), :current_event, random_event())
+          Map.put(Enum.at(locations, location_index), :current_event, random_event(game))
 
-        message = %Message{type: "Problem Reported at " <> updated_location.name, text: updated_location.problem_text}
+        message = %Message{
+          type: "Problem Reported at " <> updated_location.name,
+          text: updated_location.problem_text
+        }
 
         game
         |> Map.put(:locations, List.replace_at(locations, location_index, updated_location))
@@ -44,11 +45,16 @@ defmodule EmergencyDispatch.EventGenerator do
     end
   end
 
-  defp random_event() do
-    # TODO: tweak these to make them doable but challenging
-    [severity] = Enum.take_random(@severities, 1)
-    [time_limit] = Enum.take_random(@time_limits, 1)
-    work_units = severity * @work_unit_multiplier
+  defp random_event(%Game{
+         level: %{
+           work_unit_multiplier: multiplier,
+           severities: severities,
+           time_limits: time_limits
+         }
+       }) do
+    [severity] = Enum.take_random(severities, 1)
+    [time_limit] = Enum.take_random(time_limits, 1)
+    work_units = severity * multiplier
 
     %Event{
       severity: severity,

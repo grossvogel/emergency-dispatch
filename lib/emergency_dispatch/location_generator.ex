@@ -6,8 +6,7 @@ defmodule EmergencyDispatch.Locations do
       id: 1,
       name: "Brother Martin",
       problem_text: "Lead in the drinking fountains",
-      success_text:
-        "Lead extraction process implemented by city water experts! Mayor is a hero!",
+      success_text: "Lead extraction process implemented by city water experts! Mayor is a hero!",
       failure_text:
         "Children exposed to lead due to Mayorial incompetence. Parents march on city hall!",
       src: "/images/school.svg"
@@ -38,16 +37,14 @@ defmodule EmergencyDispatch.Locations do
       problem_text: "Luggage conveyor belts broken",
       success_text:
         "Conveyor belt turned off and then turned on again - that worked! People give mayor credit for his quick thinking!",
-      failure_text:
-        "No luggage makes it to its destination. Mayor in Auruba - optics are bad!",
+      failure_text: "No luggage makes it to its destination. Mayor in Auruba - optics are bad!",
       src: "/images/airport.svg"
     },
     5 => %Location{
       id: 5,
       name: "Army Barracks",
       problem_text: "PA system on the fritz!",
-      success_text:
-        "Announcements can be heard once again! Cadets are heard to say - yaaay.",
+      success_text: "Announcements can be heard once again! Cadets are heard to say - yaaay.",
       failure_text:
         "With no ability to communicate to the entire base - everything falls into chaos!",
       src: "/images/army.svg"
@@ -66,30 +63,24 @@ defmodule EmergencyDispatch.Locations do
       id: 7,
       name: "St. Louis Cathedral",
       problem_text: "Power outage plunges parrishoners into darkness!",
-      success_text:
-        "Electiricty flowing again! Geaux Saints!",
-      failure_text:
-        "Masses said by candlelight. Mayor blamed!",
+      success_text: "Electiricty flowing again! Geaux Saints!",
+      failure_text: "Masses said by candlelight. Mayor blamed!",
       src: "/images/church.svg"
     },
     8 => %Location{
       id: 8,
       name: "Hard Rock Construction Site",
       problem_text: "Rubble shifts and blocks side street",
-      success_text:
-        "Efficient city crews remove rubble and even clean street! City rejoices!",
-      failure_text:
-        "Grid lock in the french quarter - mulitple parade routes affected!",
+      success_text: "Efficient city crews remove rubble and even clean street! City rejoices!",
+      failure_text: "Grid lock in the french quarter - mulitple parade routes affected!",
       src: "/images/construction.svg"
     },
     9 => %Location{
       id: 9,
       name: "Folgers Coffee Factory",
       problem_text: "Coffee roaster burning beans",
-      success_text:
-        "Crisis averted - caffeine is flowing free once again!",
-      failure_text:
-        "Sleepy anxious poplulace demand answers as entire coffee crop ruined!",
+      success_text: "Crisis averted - caffeine is flowing free once again!",
+      failure_text: "Sleepy anxious poplulace demand answers as entire coffee crop ruined!",
       src: "/images/factory.svg"
     },
     10 => %Location{
@@ -98,18 +89,15 @@ defmodule EmergencyDispatch.Locations do
       problem_text: "Bananas Foster tableside service on fire!",
       success_text:
         "Fire put out and desert was still pretty good! Mayor gets free 2 night stay!",
-      failure_text:
-        "With no bananas foster on the menu - hotel vacancies increase drastically!",
+      failure_text: "With no bananas foster on the menu - hotel vacancies increase drastically!",
       src: "/images/hotel.svg"
     },
     11 => %Location{
       id: 11,
       name: "Central Lockup",
       problem_text: "Mugshots are coming out like glamour shots!",
-      success_text:
-        "No more confusing criminals for heart throbs!",
-      failure_text:
-        "Prison dating sites break the internet!",
+      success_text: "No more confusing criminals for heart throbs!",
+      failure_text: "Prison dating sites break the internet!",
       src: "/images/jail.svg"
     },
     12 => %Location{
@@ -126,8 +114,7 @@ defmodule EmergencyDispatch.Locations do
       id: 13,
       name: "Rouses Supermarket",
       problem_text: "Ice cream freezer broken",
-      success_text:
-        "Crisis averted - mint choclate chip ice cream is saved!",
+      success_text: "Crisis averted - mint choclate chip ice cream is saved!",
       failure_text:
         "Despondant citizens picket in front of mayor's house - I scream U scream We all scream for ice cream!",
       src: "/images/supermarket.svg"
@@ -138,16 +125,14 @@ defmodule EmergencyDispatch.Locations do
       problem_text: "Gavel no longer works!",
       success_text:
         "Quick thinking worker grabs a toy gavel that adds a little levity to dreary traffic court proceedings!",
-      failure_text:
-        "With no ability to make calls to order - a riot breaks out. Mayor blamed!!!",
+      failure_text: "With no ability to make calls to order - a riot breaks out. Mayor blamed!!!",
       src: "/images/courthouse.svg"
     },
     15 => %Location{
       id: 15,
       name: "Fleurty Girl",
       problem_text: "T-shirt printing machine has gone haywire!",
-      success_text:
-        "Local business saved! Mayor and staff receive free classic T's!",
+      success_text: "Local business saved! Mayor and staff receive free classic T's!",
       failure_text:
         "Misprinted shirts offend tourists. Mayor blamed for dropping revenue numbers!",
       src: "/images/shop.svg"
@@ -156,8 +141,7 @@ defmodule EmergencyDispatch.Locations do
       id: 16,
       name: "University of New Orleans",
       problem_text: "Sprinkler system activates at random moments!",
-      success_text:
-        "No more getting soaked going to class! Toga party thrown in Mayor's honor!",
+      success_text: "No more getting soaked going to class! Toga party thrown in Mayor's honor!",
       failure_text:
         "Wet students and professors organize a petition to call for early elections!",
       src: "/images/university.svg"
@@ -171,6 +155,6 @@ defmodule EmergencyDispatch.Locations do
   def random_locations(count) do
     @all_locations
     |> Enum.take_random(count)
-    |> Enum.map(fn {key, loc} -> loc end)
+    |> Enum.map(fn {_key, loc} -> loc end)
   end
 end
