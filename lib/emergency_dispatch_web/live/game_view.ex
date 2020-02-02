@@ -11,7 +11,6 @@ defmodule EmergencyDispatchWeb.GameView do
 
   def mount(_session, socket) do
     if connected?(socket), do: Process.send_after(self(), :tick, @timer_interval)
-    Game.generate_new()
     {:ok, assign(socket, %{game: Game.generate_new()})}
   end
 
