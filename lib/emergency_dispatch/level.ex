@@ -24,10 +24,10 @@ defmodule EmergencyDispatch.Level do
     2 => %{
       level_number: 2,
       event_gen_period: 1,
-      event_gen_likelihood: 50,
+      event_gen_likelihood: 53,
       work_unit_multiplier: 4,
       severities: [1, 1, 2, 2, 3],
-      time_limits: [5, 10, 15],
+      time_limits: [5, 5, 10, 15],
       total_crews: 4,
       win_condition: 80,
       lose_condition: 30
@@ -35,10 +35,10 @@ defmodule EmergencyDispatch.Level do
     3 => %{
       level_number: 3,
       event_gen_period: 1,
-      event_gen_likelihood: 70,
-      work_unit_multiplier: 4,
+      event_gen_likelihood: 75,
+      work_unit_multiplier: 5,
       severities: [1, 1, 1, 2, 2, 2, 3],
-      time_limits: [5, 9, 13],
+      time_limits: [5, 5, 8, 8, 10],
       total_crews: 5,
       win_condition: 85,
       lose_condition: 35
@@ -46,10 +46,10 @@ defmodule EmergencyDispatch.Level do
     4 => %{
       level_number: 4,
       event_gen_period: 1,
-      event_gen_likelihood: 95,
-      work_unit_multiplier: 3,
+      event_gen_likelihood: 100,
+      work_unit_multiplier: 4,
       severities: [1, 1, 1, 1, 2, 2, 2, 3],
-      time_limits: [4, 7, 10],
+      time_limits: [4, 4, 6, 6, 9],
       total_crews: 5,
       win_condition: 95,
       lose_condition: 35
