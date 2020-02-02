@@ -64,11 +64,15 @@
   <div class="end-screen-modal win">
     <%= if is_last_level?(@game.level) do %>
       <h1>You Win</h1>
-      <h2>You Finish Your Last Term with Record Popularity Ratings</h2>
-      <button onclick="window.location.href = '/';" type="button">Play Again</button>
+      <h2>Term-limited Mayor Retires<br />with Record Popularity!</h2>
+      <%= game_stats(@game) %>
+      <div class="button-container">
+        <button onclick="window.location.href = '/';" type="button">Play Again</button>
+      </div>
     <% else %>
       <h1>Election Results</h1>
-      <h2>You have been re-elected!</h2>
+      <h2>Mayor re-elected in a landslide!</h2>
+      <%= game_stats(@game) %>
       <div class="button-container">
         <button phx-click="next_level" type="button">Begin Next Term</button>
       </div>
@@ -79,7 +83,8 @@
   <div class="end-screen"></div>
   <div class="end-screen-modal lose">
     <h1>Election Results</h1>
-    <h2>You have been defeated!</h2>
+    <h2>Mayor suffers humiliating defeat!</h2>
+    <%= game_stats(@game) %>
     <div class="button-container">
       <button onclick="window.location.href = '/';" type="button">Play Again</button>
     </div>

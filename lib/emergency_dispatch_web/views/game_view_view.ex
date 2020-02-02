@@ -31,4 +31,49 @@ defmodule EmergencyDispatchWeb.GameViewView do
   def active_crew_class(_, _) do
     "unavailable"
   end
+
+  def game_stats(game) do
+    %{event_count: total, solved_events: solved, failed_events: failed} = calc_game_stats(game)
+
+    ~E"""
+    <div class="stats">
+      <h4>Performance This Term</h4>
+      <ul>
+        <li>
+          <span> <%= total %> Problems Encountered
+        </li>
+        <li>
+          <span> <%= solved %> Problems Solved
+        </li>
+        <li>
+          <span> <%= failed %> Failures
+        </li>
+      </ul>
+    </div>
+    """
+  end
+
+  defp calc_game_stats(%Game{flash_messages: messages}) do
+    Enum.reduce(messages, empty_stats(), &stat_reducer/2)
+  end
+
+  defp empty_stats() do
+    %{event_count: 0, solved_events: 0, failed_events: 0}
+  end
+
+  defp stat_reducer(message, stats) do
+    IO.inspect(message)
+    IO.inspect(stats)
+    key = stat_key(message)
+    Map.put(stats, key, stats[key] + 1)
+  end
+
+  defp stat_key(%{type: <<c::binary-size(1)>> <> _rest}) do
+    case String.downcase(c) do
+      "p" -> :event_count
+      "b" -> :solved_events
+      "d" -> :failed_events
+      _ -> nil
+    end
+  end
 end
