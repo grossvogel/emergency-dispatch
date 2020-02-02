@@ -13,7 +13,7 @@ defmodule EmergencyDispatch.Level do
     1 => %{
       level_number: 1,
       event_gen_period: 1,
-      event_gen_likelihood: 40,
+      event_gen_likelihood: 38,
       work_unit_multiplier: 5,
       severities: [1, 2, 3],
       time_limits: [6, 11, 16],
