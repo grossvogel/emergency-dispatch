@@ -1,10 +1,10 @@
 defmodule EmergencyDispatch.EventGenerator do
   alias EmergencyDispatch.{Game, Event, Location, Message}
   @event_gen_period 5
-  @event_gen_likelihood 100
+  @event_gen_likelihood 95
   @work_unit_multiplier 10
   @severities [1, 2, 3]
-  @time_limits [5, 10, 15]
+  @time_limits [10, 20, 30]
 
   def generate(%Game{time_elapsed: time} = game)
       when rem(time, @event_gen_period) == 0 do
@@ -32,7 +32,7 @@ defmodule EmergencyDispatch.EventGenerator do
         updated_location =
           Map.put(Enum.at(locations, location_index), :current_event, random_event())
 
-        message = %Message{type: "Problem Reported", text: updated_location.problem_text}
+        message = %Message{type: "Problem Reported at " <> updated_location.name, text: updated_location.problem_text}
 
         game
         |> Map.put(:locations, List.replace_at(locations, location_index, updated_location))

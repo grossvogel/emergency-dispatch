@@ -36,7 +36,7 @@ defmodule EmergencyDispatch.EventProcessor do
   # success
   defp check_conditions(%Event{work_units_remaining: remaining} = event, game, location)
        when remaining <= 0 do
-    message = %Message{type: "Breaking News", text: location.success_text}
+    message = %Message{type: "Breaking News at " <> location.name, text: location.success_text}
 
     updated_game =
       game
@@ -50,7 +50,7 @@ defmodule EmergencyDispatch.EventProcessor do
   # failure
   defp check_conditions(%Event{time_elapsed: elapsed, time_limit: limit} = event, game, location)
        when elapsed > limit do
-    message = %Message{type: "Disaster Strikes", text: location.failure_text}
+    message = %Message{type: "Disaster Strikes at " <> location.name, text: location.failure_text}
 
     updated_game =
       game

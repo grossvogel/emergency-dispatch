@@ -4,7 +4,7 @@ defmodule EmergencyDispatchWeb.GameViewView do
   def to_class(string) do
     string
     |> String.downcase()
-    |> String.replace(" ", "-")
+    |> String.first()
   end
 
   def work_progress(%{current_event: event}) do

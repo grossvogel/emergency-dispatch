@@ -16,6 +16,9 @@
   <div class="city-grid">
     <%= for location <- @game.locations do %>
       <div class="block" phx-click="crew" phx-value-loc_id="<%= location.id %>">
+        <div class="location-image-div">
+          <img src="<%= location.src %>" alt="<%= location.name %>" class="location-image" />
+        </div>
         <%= if location.current_event do %>
           <div class="alarms icon-bar">
             <div class="progress-bar">

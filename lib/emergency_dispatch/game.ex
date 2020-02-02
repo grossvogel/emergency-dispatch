@@ -5,8 +5,8 @@ defmodule EmergencyDispatch.Game do
             work_crews: 3,
             active_events: [],
             score: 50,
-            win_condition: 60,
-            lose_condition: 40,
+            win_condition: 90,
+            lose_condition: 20,
             locations: [],
             flash_messages: []
 

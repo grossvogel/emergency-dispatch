@@ -5,5 +5,6 @@ defmodule EmergencyDispatch.Location do
             success_text: "",
             failure_text: "",
             image_sprite: "",
-            current_event: nil
+            current_event: nil,
+            src: ""
 end

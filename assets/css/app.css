@@ -48,11 +48,14 @@ body {
   background-color: #e1c699;
   font-family: 'Open Sans', sans-serif;
 }
+
 .main {
   display: flex;
   flex-direction: row;
 }
+
 .city-grid {
+  position: relative;
   width: calc(98px * 4 * 1.5);
   height: calc(104px * 4 * 1.5);
   display: flex;
@@ -60,6 +63,22 @@ body {
   flex-shrink: 0;
   flex-grow: 0;
 }
+
+.location-image-div {
+  position: absolute;
+  background-color: #90bb8f;
+  top: 13px;
+  right: 16px;
+  min-width: 118px;
+  min-height: 130px;
+}
+
+.location-image {
+  height: 80px;
+  padding-top: 25px;
+  padding-left: 20px;
+}
+
 .messages {
   flex-shrink: 0;
   flex-grow: 0;
@@ -69,27 +88,34 @@ body {
   background: #ddd;
   margin-left: 20px;
 }
+
 .messages h4 {
   margin-top: 0;
   margin-bottom: 0.5em;
   text-transform: uppercase;
 }
-.disaster-strikes {
+
+.d {
   background-color: #fcc;
 }
-.disaster-strikes h4{
+
+.d h4{
   color:#a00;
 }
-.breaking-news {
+
+.b {
   background-color: #cfc;
 }
-.breaking-news h4{
+
+.b h4{
   color:#080;
 }
+
 .messages ul {
   margin: 0;
   padding: 0;
 }
+
 .messages li {
   padding: 14px 20px;
   list-style: none;
@@ -104,6 +130,7 @@ body {
   background-image: url(/images/block-bg.png);
   background-size: cover;
 }
+
 .icon-bar {
   background: #eee;
   position: absolute;
@@ -116,6 +143,7 @@ body {
   top: 8px;
   left: 8px;
 }
+
 .block .crews {
   bottom: 8px;
   right: 8px;
