@@ -2,6 +2,10 @@
 
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
 
+a {
+  color: #17a2b8;
+}
+
 h1 h2, h3, h4 {
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
@@ -199,7 +203,6 @@ body {
 .end-screen-modal {
   position: fixed;
   top: 12vh;
-  bottom: 12vh;
   padding: 30px;
   background:#eee;
   margin-left: calc(50% - 250px - 30px - 100px);
@@ -246,4 +249,25 @@ button {
   border-color: #17a2b8;
 
   cursor: pointer;
+}
+
+.stats {
+  width: 200px;
+  margin: 30px auto 0 auto;
+}
+.stats h4 {
+  margin-bottom: 8px;
+}
+.stats ul {
+  margin: 0;
+  padding: 0;
+}
+.stats li {
+  list-style: none;
+}
+
+.attrib {
+  margin-top: 15px;
+  color: #777;
+  font-size: 0.8em;
 }
